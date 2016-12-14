@@ -1,0 +1,46 @@
+/* Animations */
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .5s ease;
+}
+.fade-enter, .fade-leave-active {
+  opacity: 0
+}
+.child-view {
+  transition: all .5s cubic-bezier(.55,0,.1,1);
+}
+.slide-left-enter, .slide-right-leave-active {
+  opacity: 0;
+  -webkit-transform: translate(30px, 0);
+  transform: translate(30px, 0);
+}
+.slide-left-leave-active, .slide-right-enter {
+  opacity: 0;
+  -webkit-transform: translate(-30px, 0);
+  transform: translate(-30px, 0);
+}
+
+/* Color */
+.btn-orange{
+  background: #ff5e15;
+}
+.btn-green{
+  background: #6cff5d;
+}
+.btn-red{
+  background: #ff242f;
+}
+.btn-blue{
+  background: #6ca5ff;
+}
+/*icon font*/
+@font-face {font-family: 'WeStar_iconfont';
+    src: url('../fonts/weStar_iconfont.eot'); /* IE9*/
+    src: url('../fonts/weStar_iconfont.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+    url('../fonts/weStar_iconfont.woff') format('woff'), /* chrome、firefox */
+    url('../fonts/weStar_iconfont.ttf') format('truetype'), /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/
+    url('../fonts/weStar_iconfont.svg#WeStar_iconfont') format('svg'); /* iOS 4.1- */
+}
+
+.WeStar_iconfont{
+    font-family:"WeStar_iconfont" !important;
+}
