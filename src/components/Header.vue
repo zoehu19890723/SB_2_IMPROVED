@@ -1,14 +1,18 @@
 <template>
-  <div class="navbar">
+  <div v-if="head.show" class="navbar">
     <div class="navbar-inner">
       <div class="left">
         <a href="#" class="link" v-if="head.backShow" @click="routerBack">
           <i class="icon icon-back"></i>
-          <span>后退</span>
         </a>
       </div>
     <div class="center">{{ head.title }}</div>
-      <div class="right"></div>
+      <div class="right">
+        <router-link class="link icon-only" v-if="head.rightShow" to="/config">
+          <i class="icon iconfont icon-chuzhenbiaoshezhi"></i>
+          <span>{{ head.rightInfo }}</span>
+        </router-link>
+      </div>
       </div>
   </div>
 </template>
@@ -26,18 +30,23 @@
   },
   methods:{
     routerBack(){
-      window.history.back()
+      if(this.head.backToPoint !== undefined && this.head.backToPoint !== null){
+        this.$router.replace(this.head.backToPoint);
+      }else{
+        this.$router.back();
+      }
     }
   }
   }
 </script>
 
 <style scoped>
-  .left{
-    width:20%
-  }
-  .right{
-    width:20%
-  }
-
+.navbar .navbar-inner .left{
+  width: 20%;
+}
+.navbar .navbar-inner .right{
+  width: 20%;
+  display: flex;
+  justify-content: flex-end;
+}
 </style>

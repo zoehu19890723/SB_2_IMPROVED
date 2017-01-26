@@ -9,7 +9,7 @@
         </v-bar>
         <!-- 路由出口 -->
         <!-- 路由匹配到的组件将渲染在这里 -->
-        <transition name="fade" mode="out-in">
+        <transition :name="transitionName">
           <router-view></router-view>
         </transition>
       </div>
@@ -22,11 +22,11 @@
 import VBar from '../components/Bar'
 import BarItem from '../components/BarItem'
 import VHeader from '../components/Header'
-import $ from 'zepto'
 import { mapGetters } from 'vuex'
 
 export default {
   name: 'app',
+  
   created:function(){
   },
   data(){
@@ -35,7 +35,7 @@ export default {
       isIndex:true,
       items: [
         {path: '/home' ,label:'首页',icon:'&#xe607'},
-        {path: '/contact' ,label:'动态',icon:'&#xe617'},
+        {path: '/contact' ,label:'联系人',icon:'&#xe617'},
         {path: '/self' ,label:'我',icon:'&#xe61b'}
       ]
     }
@@ -46,10 +46,11 @@ export default {
   // dynamically set transition based on route change
   watch: {
     '$route' (to, from) {
-      const toDepth = to.path.split('/').length;
-      const fromDepth = from.path.split('/').length;
-      this.transitionName = toDepth < fromDepth ? 'slide-right' : 'slide-left';
-      toDepth > 2?this.$store.commit('hideFooter'):this.$store.commit('showFooter');
+      if(from.path.indexOf('login') >-1 ||from.path.indexOf('home') >-1 || (from.path.indexOf('contact') >-1 && to.path.indexOf('self') >-1)){
+        this.transitionName = 'slide-left';
+      }else{
+        this.transitionName = 'slide-right';
+      }
     }
   },
   components: {
